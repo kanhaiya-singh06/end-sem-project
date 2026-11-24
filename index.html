@@ -3,186 +3,52 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>End Sem Project</title>
+  <title>ShopKart — Electronics Store</title>
   <style>
-    :root {
-      --navy: #0f172a;
-      --blue: #2563eb;
-      --pale: #f1f5f9;
-      --border: #e2e8f0;
-      --muted: #64748b;
-    }
-
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: Inter, Arial, sans-serif;
-      background: #f8fafc;
-      color: var(--navy);
-    }
-
-    header {
-      height: 72px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 32px;
-      background: var(--navy);
-      color: white;
-    }
-
-    header h1 { margin: 0; font-size: 22px; }
-
-    main {
-      max-width: 1100px;
-      margin: 32px auto;
-      padding: 0 20px;
-    }
-
-    .card {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
-      padding: 24px;
-      margin-bottom: 24px;
-    }
-
-    .toolbar {
-      display: flex;
-      gap: 12px;
-      margin-bottom: 20px;
-    }
-
-    input {
-      flex: 1;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 11px 13px;
-      font-size: 15px;
-      outline: none;
-    }
-
-    input:focus { border-color: var(--blue); }
-
-    button {
-      border: 0;
-      border-radius: 8px;
-      padding: 11px 16px;
-      background: var(--blue);
-      color: white;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    button:hover { background: #1d4ed8; }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-
-    th, td {
-      padding: 14px 12px;
-      text-align: left;
-      border-bottom: 1px solid var(--border);
-    }
-
-    th { color: var(--muted); font-size: 13px; }
-
-    .empty {
-      text-align: center;
-      color: var(--muted);
-      padding: 32px;
-    }
-
-    @media (max-width: 640px) {
-      header { padding: 0 20px; }
-      .toolbar { flex-direction: column; }
-      table { font-size: 14px; }
-      th:nth-child(3), td:nth-child(3) { display: none; }
-    }
+    :root{--ink:#172033;--blue:#2563eb;--orange:#f97316;--pale:#f6f8fc;--line:#e7eaf0;--muted:#6b7280} 
+    *{box-sizing:border-box} body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:var(--pale)}
+    header{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}.nav{max-width:1180px;margin:auto;height:76px;padding:0 20px;display:flex;align-items:center;gap:28px}.brand{font-size:25px;font-weight:900;text-decoration:none;color:var(--ink)}.brand span{color:var(--orange)}
+    .search{flex:1;display:flex;max-width:520px}.search input{width:100%;border:1px solid var(--line);border-right:0;border-radius:9px 0 0 9px;padding:13px 16px;outline:none}.search button{border:0;border-radius:0 9px 9px 0;background:var(--blue);color:white;padding:0 18px;cursor:pointer}
+    .cart-button{margin-left:auto;border:0;background:#fff;font-weight:800;color:var(--ink);cursor:pointer;position:relative}.cart-count{display:inline-grid;place-items:center;background:var(--orange);color:white;width:23px;height:23px;border-radius:50%;font-size:12px;margin-left:5px}
+    main{max-width:1180px;margin:auto;padding:28px 20px 60px}.hero{min-height:280px;border-radius:18px;padding:48px;background:linear-gradient(110deg,#172033 0%,#172033 57%,rgba(23,32,51,.1) 57%),url('https://images.unsplash.com/photo-1498049794561-7780e7231661?auto=format&fit=crop&w=1400&q=80') center/cover;color:white;display:flex;align-items:center}.hero div{max-width:500px}.hero small{color:#93c5fd;font-weight:800;text-transform:uppercase;letter-spacing:2px}.hero h1{font-size:44px;line-height:1.05;margin:12px 0}.hero p{color:#cbd5e1}.hero button{margin-top:12px;border:0;border-radius:8px;background:var(--orange);color:white;padding:13px 20px;font-weight:800;cursor:pointer}
+    .filters{display:flex;gap:10px;margin:28px 0 18px;overflow:auto}.filter{border:1px solid var(--line);background:#fff;border-radius:999px;padding:9px 16px;color:var(--muted);font-weight:700;cursor:pointer;white-space:nowrap}.filter.active{background:var(--ink);color:white;border-color:var(--ink)}
+    .section-title{display:flex;justify-content:space-between;align-items:center}.section-title h2{margin:0}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:18px}.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;transition:.2s}.card:hover{transform:translateY(-4px);box-shadow:0 14px 35px rgba(23,32,51,.1)}
+    .product-img{height:210px;border-radius:10px;background:#f1f3f7;display:grid;place-items:center;overflow:hidden}.product-img img{width:100%;height:100%;object-fit:cover}.tag{display:inline-block;margin:12px 0 7px;color:var(--orange);font-size:12px;font-weight:800}.card h3{font-size:16px;margin:0 0 8px}.price-row{display:flex;justify-content:space-between;align-items:center}.price{font-size:20px;font-weight:900}.old{text-decoration:line-through;color:#9ca3af;font-size:13px;margin-left:5px}.add{width:38px;height:38px;border:0;border-radius:9px;background:var(--ink);color:white;font-size:21px;cursor:pointer}.add:hover{background:var(--blue)}
+    .drawer-bg{position:fixed;inset:0;background:rgba(15,23,42,.45);z:30;opacity:0;pointer-events:none;transition:.2s}.drawer-bg.open{opacity:1;pointer-events:auto}.drawer{position:absolute;right:0;top:0;height:100%;width:min(410px,92vw);background:#fff;padding:24px;display:flex;flex-direction:column}.drawer-head{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding-bottom:18px}.drawer h2{margin:0}.close{border:0;background:none;font-size:25px;cursor:pointer}.cart-items{flex:1;overflow:auto}.cart-row{display:grid;grid-template-columns:70px 1fr auto;gap:12px;align-items:center;padding:16px 0;border-bottom:1px solid var(--line)}.cart-row img{width:70px;height:70px;border-radius:8px;object-fit:cover}.cart-row h4{margin:0 0 5px}.qty{display:flex;gap:8px;align-items:center}.qty button{border:1px solid var(--line);background:#fff;width:26px;height:26px;border-radius:5px}.remove{border:0;background:none;color:#ef4444;cursor:pointer}.total-row{border-top:1px solid var(--line);padding-top:18px}.total-row div{display:flex;justify-content:space-between;font-size:18px;font-weight:900}.checkout{width:100%;border:0;border-radius:9px;margin-top:14px;padding:14px;background:var(--orange);color:white;font-weight:900;cursor:pointer}.empty-cart{text-align:center;color:var(--muted);padding:60px 10px}
+    @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.hero{background:#172033;padding:36px}.hero h1{font-size:36px}} @media(max-width:600px){.nav{height:auto;padding:12px 16px;flex-wrap:wrap}.search{order:3;max-width:none;width:100%}.brand{font-size:21px}.cart-button{font-size:14px}.hero{min-height:230px;padding:28px}.hero h1{font-size:31px}.grid{grid-template-columns:1fr 1fr;gap:10px}.product-img{height:150px}.card h3{font-size:14px}.card{padding:10px}.old{display:none}}
   </style>
 </head>
 <body>
-  <header>
-    <h1>End Sem Project</h1>
-    <span>Student Manager</span>
-  </header>
-
+  <header><nav class="nav"><a class="brand" href="#">Shop<span>Kart</span></a><form class="search" id="searchForm"><input id="search" placeholder="Search products..." aria-label="Search products"><button type="submit">⌕</button></form><button class="cart-button" id="openCart">Cart <span class="cart-count" id="cartCount">0</span></button></nav></header>
   <main>
-    <section class="card">
-      <h2>Students</h2>
-      <div class="toolbar">
-        <input id="studentName" type="text" placeholder="Student name">
-        <input id="studentClass" type="text" placeholder="Class">
-        <button id="addStudent">Add Student</button>
-      </div>
-
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Class</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody id="studentList"></tbody>
-      </table>
-    </section>
+    <section class="hero"><div><small>New collection 2026</small><h1>Upgrade Your Everyday Tech</h1><p>Discover premium devices and accessories selected for modern life.</p><button id="shopNow">Shop the collection</button></div></section>
+    <div class="filters" id="filters"></div>
+    <div class="section-title"><h2 id="sectionTitle">Featured Products</h2><span id="resultCount"></span></div>
+    <section class="grid" id="productGrid"></section>
   </main>
-
+  <div class="drawer-bg" id="drawerBg"><aside class="drawer"><div class="drawer-head"><h2>Your Cart</h2><button class="close" id="closeCart">×</button></div><div class="cart-items" id="cartItems"></div><div class="total-row"><div><span>Total</span><span id="cartTotal">₹0</span></div><button class="checkout" id="checkout">Proceed to Checkout</button></div></aside></div>
   <script>
-    const nameInput = document.getElementById('studentName');
-    const classInput = document.getElementById('studentClass');
-    const studentList = document.getElementById('studentList');
-    const addButton = document.getElementById('addStudent');
-
-    let students = JSON.parse(localStorage.getItem('taskmate-students') || '[]');
-
-    function render() {
-      if (!students.length) {
-        studentList.innerHTML = '<tr><td class="empty" colspan="3">No students added yet</td></tr>';
-        return;
-      }
-
-      studentList.innerHTML = students.map((student, index) => `
-        <tr>
-          <td>${escapeHtml(student.name)}</td>
-          <td>${escapeHtml(student.className)}</td>
-          <td>Active</td>
-        </tr>
-      `).join('');
-    }
-
-    function escapeHtml(value) {
-      const element = document.createElement('div');
-      element.textContent = value;
-      return element.innerHTML;
-    }
-
-    addButton.addEventListener('click', () => {
-      const name = nameInput.value.trim();
-      const className = classInput.value.trim();
-
-      if (!name || !className) return;
-
-      students.push({ name, className });
-      localStorage.setItem('taskmate-students', JSON.stringify(students));
-      nameInput.value = '';
-      classInput.value = '';
-      render();
-    });
-
-    [nameInput, classInput].forEach(input => {
-      input.addEventListener('keydown', event => {
-        if (event.key === 'Enter') addButton.click();
-      });
-    });
-
-    render();
+    const products=[
+      {id:1,name:'AirPro Wireless Headphones',category:'Audio',price:3499,old:4999,img:'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=700&q=80'},
+      {id:2,name:'Nova Smartphone',category:'Phones',price:24999,old:27999,img:'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=700&q=80'},
+      {id:3,name:'FitWatch Series 5',category:'Wearables',price:5999,old:7999,img:'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=700&q=80'},
+      {id:4,name:'UltraBook 14 Laptop',category:'Laptops',price:54999,old:61999,img:'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=700&q=80'},
+      {id:5,name:'Pocket Bluetooth Speaker',category:'Audio',price:2199,old:2999,img:'https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=700&q=80'},
+      {id:6,name:'Pro Lens Camera',category:'Cameras',price:32999,old:36999,img:'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=700&q=80'},
+      {id:7,name:'Mechanical Gaming Keyboard',category:'Accessories',price:4499,old:5999,img:'https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=700&q=80'},
+      {id:8,name:'Wireless Gaming Mouse',category:'Accessories',price:1799,old:2499,img:'https://images.unsplash.com/photo-1527814050087-3793815479db?auto=format&fit=crop&w=700&q=80'}
+    ];
+    let activeCategory='All', cart=JSON.parse(localStorage.getItem('shopkart-cart')||'[]');
+    const format=n=>`₹${n.toLocaleString('en-IN')}`;
+    const grid=document.getElementById('productGrid'), filters=document.getElementById('filters');
+    function renderFilters(){const categories=['All',...new Set(products.map(p=>p.category))];filters.innerHTML=categories.map(c=>`<button class="filter ${c===activeCategory?'active':''}" data-category="${c}">${c}</button>`).join('');document.querySelectorAll('.filter').forEach(b=>b.onclick=()=>{activeCategory=b.dataset.category;renderFilters();renderProducts();});}
+    function renderProducts(){const query=document.getElementById('search').value.trim().toLowerCase();const list=products.filter(p=>(activeCategory==='All'||p.category===activeCategory)&&(!query||p.name.toLowerCase().includes(query)||p.category.toLowerCase().includes(query)));grid.innerHTML=list.length?list.map(p=>`<article class="card"><div class="product-img"><img src="${p.img}" alt="${p.name}"></div><span class="tag">${p.category}</span><h3>${p.name}</h3><div class="price-row"><div><span class="price">${format(p.price)}</span><span class="old">${format(p.old)}</span></div><button class="add" onclick="addToCart(${p.id})" title="Add ${p.name} to cart">+</button></div></article>`).join(''):'<p>No products found.</p>';document.getElementById('resultCount').textContent=`${list.length} products`;}
+    function saveCart(){localStorage.setItem('shopkart-cart',JSON.stringify(cart));renderCart();}
+    function addToCart(id){const item=cart.find(i=>i.id===id);item?item.qty++:cart.push({id,qty:1});saveCart();}
+    function changeQty(id,change){const item=cart.find(i=>i.id===id);if(!item)return;item.qty+=change;if(item.qty<=0)cart=cart.filter(i=>i.id!==id);saveCart();}
+    function renderCart(){const count=cart.reduce((sum,i)=>sum+i.qty,0);document.getElementById('cartCount').textContent=count;const el=document.getElementById('cartItems');if(!count){el.innerHTML='<div class="empty-cart">Your cart is empty.<br><br>Start shopping to add items.</div>';document.getElementById('cartTotal').textContent='₹0';return;}let total=0;el.innerHTML=cart.map(i=>{const p=products.find(x=>x.id===i.id);total+=p.price*i.qty;return `<div class="cart-row"><img src="${p.img}" alt="${p.name}"><div><h4>${p.name}</h4><strong>${format(p.price)}</strong></div><div class="qty"><button onclick="changeQty(${p.id},-1)">−</button><span>${i.qty}</span><button onclick="changeQty(${p.id},1)">+</button></div></div>`}).join('');document.getElementById('cartTotal').textContent=format(total);}
+    document.getElementById('openCart').onclick=()=>document.getElementById('drawerBg').classList.add('open');document.getElementById('closeCart').onclick=()=>document.getElementById('drawerBg').classList.remove('open');document.getElementById('drawerBg').onclick=e=>{if(e.target===e.currentTarget)e.currentTarget.classList.remove('open')};document.getElementById('searchForm').onsubmit=e=>{e.prevent();renderProducts()};document.getElementById('search').oninput=renderProducts;document.getElementById('shopNow').onclick=()=>document.getElementById('filters').scrollIntoView({behavior:'smooth'});document.getElementById('checkout').onclick=()=>{if(cart.length)alert('Thank you! Your order has been placed.');};
+    renderFilters();renderProducts();renderCart();
   </script>
 </body>
 </html>
