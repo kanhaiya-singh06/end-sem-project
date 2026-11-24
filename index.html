@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TaskMate Student Manager</title>
+  <style>
+    :root {
+      --navy: #0f172a;
+      --blue: #2563eb;
+      --pale: #f1f5f9;
+      --border: #e2e8f0;
+      --muted: #64748b;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, Arial, sans-serif;
+      background: #f8fafc;
+      color: var(--navy);
+    }
+
+    header {
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+      background: var(--navy);
+      color: white;
+    }
+
+    header h1 { margin: 0; font-size: 22px; }
+
+    main {
+      max-width: 1100px;
+      margin: 32px auto;
+      padding: 0 20px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+
+    .toolbar {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    input {
+      flex: 1;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 11px 13px;
+      font-size: 15px;
+      outline: none;
+    }
+
+    input:focus { border-color: var(--blue); }
+
+    button {
+      border: 0;
+      border-radius: 8px;
+      padding: 11px 16px;
+      background: var(--blue);
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    button:hover { background: #1d4ed8; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 14px 12px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th { color: var(--muted); font-size: 13px; }
+
+    .empty {
+      text-align: center;
+      color: var(--muted);
+      padding: 32px;
+    }
+
+    @media (max-width: 640px) {
+      header { padding: 0 20px; }
+      .toolbar { flex-direction: column; }
+      table { font-size: 14px; }
+      th:nth-child(3), td:nth-child(3) { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>TaskMate</h1>
+    <span>Student Manager</span>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>Students</h2>
+      <div class="toolbar">
+        <input id="studentName" type="text" placeholder="Student name">
+        <input id="studentClass" type="text" placeholder="Class">
+        <button id="addStudent">Add Student</button>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Class</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="studentList"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <script>
+    const nameInput = document.getElementById('studentName');
+    const classInput = document.getElementById('studentClass');
+    const studentList = document.getElementById('studentList');
+    const addButton = document.getElementById('addStudent');
+
+    let students = JSON.parse(localStorage.getItem('taskmate-students') || '[]');
+
+    function render() {
+      if (!students.length) {
+        studentList.innerHTML = '<tr><td class="empty" colspan="3">No students added yet</td></tr>';
+        return;
+      }
+
+      studentList.innerHTML = students.map((student, index) => `
+        <tr>
+          <td>${escapeHtml(student.name)}</td>
+          <td>${escapeHtml(student.className)}</td>
+          <td>Active</td>
+        </tr>
+      `).join('');
+    }
+
+    function escapeHtml(value) {
+      const element = document.createElement('div');
+      element.textContent = value;
+      return element.innerHTML;
+    }
+
+    addButton.addEventListener('click', () => {
+      const name = nameInput.value.trim();
+      const className = classInput.value.trim();
+
+      if (!name || !className) return;
+
+      students.push({ name, className });
+      localStorage.setItem('taskmate-students', JSON.stringify(students));
+      nameInput.value = '';
+      classInput.value = '';
+      render();
+    });
+
+    [nameInput, classInput].forEach(input => {
+      input.addEventListener('keydown', event => {
+        if (event.key === 'Enter') addButton.click();
+      });
+    });
+
+    render();
+  </script>
+</body>
+</html>
